@@ -14,21 +14,20 @@
 
     <section id="text-entry">
       <h2>Upload .txt file</h2>
-      <input type="file" accept=".txt">Upload a file</input>
+      <input type="file" accept=".txt" id="file-input">Upload a file</input>
       <span>or</span>
       <h2>Enter text</h2>
-      <input type="submit">
-        <textarea name="textarea" rows="10" cols="50" placeholder="Write something here"></textarea>
-      </input>
+      <textarea id="text-input" name="textarea" rows="10" cols="50" placeholder="Write something here"></textarea>
+      <button id="text-button" type="button">Submit</button>
 
     </section>
 
     <section id="results">
-      <h2>Behold: you are :vanity-percent:% vain!</h2>
-      <ul>
-        <li><span class="main-stat">:self-percent:</span> of words are self pronouns</li>
-        <li><span class="main-stat">:pronoun-percent:</span> of pronouns are self pronouns</li>
-        <li><span class="main-stat">:starter-percent:</span> of sentences were begun with self pronouns</li>
+      <h2 id="vanity-heading">Behold: you are :vanity-percent:% vain!</h2>
+      <ul class = "main-stats">
+        <li><span class="main-stat-num">:self-percent:</span> of words are self pronouns</li>
+        <li><span class="main-stat-num">:pronoun-percent:</span> of pronouns are self pronouns</li>
+        <li><span class="main-stat-num">:starter-percent:</span> of sentences were begun with self pronouns</li>
       </ul>
     </section>
 
@@ -47,5 +46,7 @@
   <footer>
   </footer>
 </body>
+
+<script src="script.js"></script>
 
 </html>
