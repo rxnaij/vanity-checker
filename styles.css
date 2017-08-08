@@ -1,0 +1,100 @@
+/* Box model fix & reset */
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html, body {
+  margin: 0px;
+  padding: 0px;
+}
+
+/* Page styles */
+
+body {
+  background-color: #F5E9E2;
+  color: #0B0014;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+#heading, h1 {
+  text-align: center;
+}
+
+section, footer {
+  padding: 25px;
+  margin: 0 auto;
+}
+
+@media (min-width: 769px) {
+  section {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+}
+
+.input-options  {
+  display: grid;
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+@media (min-width: 769px) {
+  .input-options {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+textarea {
+  width: 100%;
+}
+
+button {
+  font-size: 16px;
+  background: white;
+  border: none;
+}
+
+#results, #fun-stats {
+  display: block;
+}
+
+ul {
+  list-style: none;
+  line-height: 2rem;
+}
+
+.main-stats {
+  text-align: center;
+  font-family: "Source Sans Pro", 'Roboto', serif;
+  font-size: 18px;
+}
+
+.main-stat {
+  display: inline-block;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+ol {
+  line-height: 1.5rem;
+}
+
+#heading, footer {
+  background-color: #C1292E;
+  color: #D6CBC5;
+}
+#heading {
+  color: #FFF8F7;
+}

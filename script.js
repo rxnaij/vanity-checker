@@ -1,17 +1,25 @@
-/*
-  1. ID text file in DOM
-  2. store text file in a variable
-  3.
- */
-// 1. ID text file in DOM
-var testString = "I know how past me would react to the title…”aw, jeez, Richard, are you really sliding into the emo feels again?” With good reason, I would think. Past me, indeed, bore the weight of meaningless interpersonal forces on my shoulders. He knew but the depression of his emotions into the cool earth, where they made imprints that would somehow never take shape inside his own heart.";
+/********** DOM constants **********/
+const TEXT_SUBMIT = document.querySelector('#text-button');
+const TEXT_AREA = document.querySelector('#text-input');
+const FILE_SUBMIT = document.querySelector('#file-input');
+const RESULTS = document.querySelector('#results');
+const RESULTS_HEADING = document.querySelector('#vanity-heading')
+const RESULTS_STATS = document.querySelectorAll('.main-stat')
+const FUN_STATS = document.querySelector('#fun-stats');
 
-/* Word checker functions */
+/********** Word checker functions **********/
 
+/* Returns a string with all non-alphanumeric characters deleted.
+inputString: any string of text.
+*/
 function removeNonWordChars(inputString) {
   return inputString.replace(/\b\W+/g, ' ');
 }
 
+/* Returns true if inputString is a pronoun referring to a person.
+inputString: string of one word that is or is not a pronoun.
+Precondition: inputString is a single word.
+*/
 function isPronoun(inputString) {
   if ( typeof(inputString) === 'string' && ( isSelfPronoun(inputString) || inputString.match(/\b(you|your|yourself|yourselves|thy|thee|thou|he|him|his|himself|she|her|hers|herself|they|them|their|theirselves|we|us|our|ours|ourselves|who|whom|it)\b/igm) ) ) {
     return true;
@@ -19,6 +27,10 @@ function isPronoun(inputString) {
   return false;
 }
 
+/* Returns true if inputString is a pronoun referring to the self.
+inputString: string of one word that is or is not a pronoun.
+Precondition: inputString is a single word.
+*/
 function isSelfPronoun(inputString) {
   if ( typeof(inputString) === 'string' && inputString.match(/\b(i|me|mine|my|myself)\b/igm) ) {
     return true;
@@ -26,8 +38,9 @@ function isSelfPronoun(inputString) {
   return false;
 }
 
-/* Returns array of all self pronouns in inputString */
-
+/* Returns array of all pronouns in a given string of text.
+inputString: any string of text.
+*/
 function allPronouns(inputString) {
   let inputText = inputString;
   inputText = removeNonWordChars(inputText);
@@ -43,13 +56,15 @@ function allPronouns(inputString) {
   return pronouns;
 }
 
+/* Returns array of all self-pronouns in a given string of text.
+inputString: any string of text.
+*/
 function selfPronouns(inputString) {
   let inputText = inputString;
   inputText = removeNonWordChars(inputText);
   let words = inputText.split(' ');
   let pronouns = [];
-  let i = 0;
-  while (i < words.length) {
+  let i = 0; while (i < words.length) {
     if ( isSelfPronoun(words[i]) ) {
       pronouns.push(words[i]);
     }
@@ -58,64 +73,101 @@ function selfPronouns(inputString) {
   return pronouns;
 }
 
+/* Returns the quotient of all self-pronouns divided by all pronouns in a given
+string of text.
+inputString: any string of text.
+*/
 function selfPronounRatio(inputString) {
   all = allPronouns(inputString);
   self = selfPronouns(inputString);
   return self.length / all.length;
 }
 
-function wordCount(inputString) {
+/* Returns an array of all words in a given string of text.
+inputString: any string of text.
+*/
+function allWords(inputString) {
   let inputText = inputString;
   inputText = removeNonWordChars(inputText);
+  inputText = inputText.trim();
   let words = inputText.split(' ');
-  return words.length;
+  return words;
 }
 
-
-
-console.log(testString);
-console.log("Your string has " + selfPronouns(testString).length + " self pronouns!");
-console.log("The pronouns are: ");
-console.log(selfPronouns(testString));
-console.log(selfPronounRatio(testString));
-console.log("There are " + wordCount(testString) + " words in the provided string.");
-
-
-/**********************************************/
-
-const TEXT_SUBMIT = document.querySelector('#text-button');
-const TEXT_AREA = document.querySelector('#text-input');
-const FILE_SUBMIT = document.querySelector('#file-input');
-var textSubmitted = '';
-
-TEXT_SUBMIT.addEventListener("click", function() {
-  textSubmitted = TEXT_AREA.value;
-  console.log(textSubmitted);
-  updatePage();
-}, false);
-
-FILE_SUBMIT.addEventListener("change", function() {
-  var file = FILE_SUBMIT.files[0];
-  var fr = new FileReader();
-  fr.onload = function(e) {
-    fr.readAsText(file);
-    textSubmitted = fr.result;
-  };
-
-  console.log(textSubmitted);
-  updatePage();
-}, false);
-
+function allSentences(inputString) {
+  let inputText;
+  inputText = inputString.replace(/(\.|\?|!)+(\s*)/g, '\|');
+  inputText = inputText.trim();
+  let sentences = inputText.split('|');
+  if (sentences[sentences.length-1] === '') { // Checks for empty string at end of final sentence
+    sentences.pop();
+  }
+  return sentences;
+}
 
 /**********************************************/
 
-function updatePage() {
-  var currentSelfPronouns = selfPronouns(textSubmitted);
-  var currentPronouns = allPronouns(textSubmitted);
-  var currentWords = wordCount(textSubmitted);
+/* Updates webpage with statistical information once text is submitted by user.
+submittedText: string of text to be evaluated
+*/
+function updatePage(submittedText) {
+  var currentSelfPronouns = selfPronouns(submittedText);
+  var currentPronouns = allPronouns(submittedText);
+  var currentWords = allWords(submittedText);
+  var currentSentences = allSentences(submittedText);
 
-  console.log(currentSelfPronouns);
-  console.log(currentWords);
+  var currentVanity = Math.trunc((currentSelfPronouns.length / currentSentences.length) * 100);
 
-  document.querySelector('#vanity-heading').innerHTML = "Behold, you are " + ( (currentSelfPronouns.length / currentWords) * 100) + " % vain!";
+  if ( isNaN(currentVanity) ) { // Calculation error check
+    console.log('Error!');
+  } else {
+    RESULTS.style.display = "block";
+    FUN_STATS.style.display = "block";
+    RESULTS_HEADING.textContent = "Behold, you are " + currentVanity + "% vain!";
+
+    for (var elem of document.querySelectorAll('.stat')) {
+      elem.style.fontWeight = "bold";
+    }
+
+    updateText(".self-pronoun-sentence-ratio", currentSelfPronouns.length / currentSentences.length);
+    updateText(".self-pronoun-pronoun-ratio", Math.trunc(selfPronounRatio(submittedText) * 100) + '%');
+    updateText(".self-pronoun-word-ratio", Math.trunc( (currentSelfPronouns.length / currentWords.length) * 100) + '%' );
+    updateText(".words", currentWords.length);
+    updateText(".pronouns", currentPronouns.length);
+    updateText(".self-pronouns", currentSelfPronouns.length);
+  }
+}
+
+/* Updates text of specified DOM element lists. For use with updatePage() only.
+elementName: name of element
+text: string containing text content
+*/
+function updateText(elementName, text) {
+  var elementList = document.querySelectorAll(elementName);
+  console.log(elementList); // Debugging
+  for (var item of elementList) {
+    item.textContent = text;
+  }
+}
+
+/**********************************************/
+
+window.onload = function() {
+  TEXT_SUBMIT.addEventListener("click", function() {
+    updatePage(TEXT_AREA.value);
+  }, false);
+
+  FILE_SUBMIT.addEventListener('change', function(e) {
+    let file = FILE_SUBMIT.files[0];
+    let textType = /text.*/;
+    if (file.type.match(textType)) {
+      let reader = new FileReader();
+      reader.onload = function(e) {
+        updatePage(reader.result);
+      };
+      reader.readAsText(file);
+    } else {
+      alert("File not supported!");
+    }
+  }, false);
 }

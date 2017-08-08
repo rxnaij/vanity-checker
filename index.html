@@ -3,50 +3,84 @@
 
 <head>
   <title>Vanity Checker</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="See how narcissistic your writing is! Just for fun.">
+  <meta name="author" content="Richard Lu">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Source+Sans+Pro:200,400,700" rel="stylesheet">
 </head>
 
 <body>
   <main>
     <section id="heading">
-      <h1>&mdash; Vanity Checker &mdash;</h1>
+      <h1 class="title">Vanity Checker</h1>
       <p>Find out how vain your writing is!</p>
     </section>
 
     <section id="text-entry">
-      <h2>Upload .txt file</h2>
-      <input type="file" accept=".txt" id="file-input">Upload a file</input>
-      <span>or</span>
-      <h2>Enter text</h2>
-      <textarea id="text-input" name="textarea" rows="10" cols="50" placeholder="Write something here"></textarea>
-      <button id="text-button" type="button">Submit</button>
-
+      <h1>Let's start!</h1>
+      <h2 style="text-align: center;">Submit the text you'd like to evaluate for narcissism:</h2>
+      <div class="input-options">
+        <div>
+          <h2>Method 1: Upload a .txt file!</h2>
+          <input type="file" accept=".txt" id="file-input"></input>
+        </div>
+        <div>
+          <h2>Method 2: Enter text in the box below!</h2>
+          <textarea id="text-input" name="textarea" rows="10" cols="50" placeholder="Write something here"></textarea>
+          <button id="text-button" type="button">Submit</button>
+        </div>
+      </div>
     </section>
 
     <section id="results">
-      <h2 id="vanity-heading">Behold: you are :vanity-percent:% vain!</h2>
+      <h1 id="vanity-heading">Behold: you are :vanity-percent:% vain!</h1>
       <ul class = "main-stats">
-        <li><span class="main-stat-num">:self-percent:</span> of words are self pronouns</li>
-        <li><span class="main-stat-num">:pronoun-percent:</span> of pronouns are self pronouns</li>
-        <li><span class="main-stat-num">:starter-percent:</span> of sentences were begun with self pronouns</li>
+        <li><span class="main-stat self-pronoun-sentence-ratio">:self-percent:</span> self-pronouns (I, me, myself, mine, me) per sentence!</li>
+        <li><span class="main-stat self-pronoun-pronoun-ratio">:pronoun-percent:</span> of pronouns are self pronouns!</li>
+        <li><span class="main-stat self-pronoun-word-ratio">:word-percent:</span> of all words are self pronouns!</li>
       </ul>
     </section>
 
     <section id="fun-stats">
+      <h2>My stats</h2>
       <!-- BREAKDOWN OF DATA: -->
         <!-- Total number of self pronouns -->
         <!-- Breakdown of appearance of each pronoun: I, my, me, myself, mine -->
         <!-- Most common words preceding/following each pronoun -->
         <!-- Number of words in document -->
+      <ul>
+        <li>Number of words: <span class="stat words"></span></li>
+        <li>Number of pronouns: <span class="stat pronouns"></span></li>
+        <li>Number of self pronouns: <span class="stat self-pronouns"></span></li>
+        <li>Ratio of self pronouns to sentences: <span class="stat self-pronoun-sentence-ratio"></span></li>
+        <li>Ratio of self pronouns to all pronouns: <span class="stat self-pronoun-pronoun-ratio"></span></li>
+      </ul>
     </section>
 
     <section id="process">
-      <h2>How this works:</h2>
+      <h1>About this silly project</h1>
+      <h2>Tools used:</h2>
+      <ol>
+        <li>JavaScript: just the vanilla flavor</li>
+        <li>HTML and CSS :)</li>
+        <li>Uhh...GitHub?</li>
+        <li>My...computer?</li>
+        <li><1 cup of coffee</li>
+      </ol>
     </section>
   </main>
+
   <footer>
+    <p>(C) Richard Lu 2017</p>
+    <a href="https://github.com/rxnaij/vanity-checker" title="GitHub repository">GitHub repo</a>
+    <p>Disclaimer: this website is just for fun. Don't take too seriously, unless you are actually narcissistic, in which some serious self-reflection is due.</p>
+    <p>All stats are slightly rounded for ease of viewing.</p>
   </footer>
 </body>
 
 <script src="script.js"></script>
+
 
 </html>
