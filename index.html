@@ -20,31 +20,32 @@
 
     <section id="text-entry">
       <h1>Let's start!</h1>
-      <h2 style="text-align: center;">Submit the text you'd like to evaluate for narcissism:</h2>
+      <h2 style="text-align: center;">Submit the text you'd like to evaluate for narcissism (e.g. your blog post, article, paragraph, etc.)</h2>
       <div class="input-options">
         <div>
-          <h2>Method 1: Upload a .txt file!</h2>
+          <h3>Method 1: Upload a .txt file!</h3>
           <input type="file" accept=".txt" id="file-input"></input>
         </div>
         <div>
-          <h2>Method 2: Enter text in the box below!</h2>
+          <h3>Method 2: Enter text in the box below!</h3>
           <textarea id="text-input" name="textarea" rows="10" cols="50" placeholder="Write something here"></textarea>
           <button id="text-button" type="button">Submit</button>
         </div>
       </div>
     </section>
 
-    <section id="results">
+    <section id="results" class="results hidden">
       <h1 id="vanity-heading">Behold: you are :vanity-percent:% vain!</h1>
       <ul class = "main-stats">
         <li><span class="main-stat self-pronoun-sentence-ratio">:self-percent:</span> self-pronouns (I, me, myself, mine, me) per sentence!</li>
-        <li><span class="main-stat self-pronoun-pronoun-ratio">:pronoun-percent:</span> of pronouns are self pronouns!</li>
+        <li><span class="main-stat self-pronoun-pronoun-ratio">:pronoun-percent:</span> of all pronouns are self pronouns!</li>
         <li><span class="main-stat self-pronoun-word-ratio">:word-percent:</span> of all words are self pronouns!</li>
+        <li>Rating: <br><span class="main-stat rating"></span></li>
       </ul>
     </section>
 
-    <section id="fun-stats">
-      <h2>My stats</h2>
+    <section id="fun-stats" class="results hidden">
+      <h2>Data breakdown</h2>
       <!-- BREAKDOWN OF DATA: -->
         <!-- Total number of self pronouns -->
         <!-- Breakdown of appearance of each pronoun: I, my, me, myself, mine -->
@@ -52,6 +53,7 @@
         <!-- Number of words in document -->
       <ul>
         <li>Number of words: <span class="stat words"></span></li>
+        <li>Number of sentences: <span class="stat sentences"></span></li>
         <li>Number of pronouns: <span class="stat pronouns"></span></li>
         <li>Number of self pronouns: <span class="stat self-pronouns"></span></li>
         <li>Ratio of self pronouns to sentences: <span class="stat self-pronoun-sentence-ratio"></span></li>

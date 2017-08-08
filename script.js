@@ -3,8 +3,9 @@ const TEXT_SUBMIT = document.querySelector('#text-button');
 const TEXT_AREA = document.querySelector('#text-input');
 const FILE_SUBMIT = document.querySelector('#file-input');
 const RESULTS = document.querySelector('#results');
-const RESULTS_HEADING = document.querySelector('#vanity-heading')
-const RESULTS_STATS = document.querySelectorAll('.main-stat')
+const RESULTS_HEADING = document.querySelector('#vanity-heading');
+const RESULTS_STATS = document.querySelectorAll('.main-stat');
+const RATING = document.querySelector('.rating');
 const FUN_STATS = document.querySelector('#fun-stats');
 
 /********** Word checker functions **********/
@@ -121,20 +122,20 @@ function updatePage(submittedText) {
   if ( isNaN(currentVanity) ) { // Calculation error check
     console.log('Error!');
   } else {
-    RESULTS.style.display = "block";
-    FUN_STATS.style.display = "block";
+    RESULTS.classList.add('revealed');
+    FUN_STATS.classList.add('revealed');
+
     RESULTS_HEADING.textContent = "Behold, you are " + currentVanity + "% vain!";
+    currentVanityRating = rateVanity(currentSelfPronouns.length / currentSentences.length);
+    RATING.innerHTML = "<strong>" + currentVanityRating[0] + "</strong> " + currentVanityRating[1];
 
-    for (var elem of document.querySelectorAll('.stat')) {
-      elem.style.fontWeight = "bold";
-    }
-
+    updateText(".words", currentWords.length);
+    updateText(".sentences", currentSentences.length);
+    updateText(".pronouns", currentPronouns.length);
+    updateText(".self-pronouns", currentSelfPronouns.length);
     updateText(".self-pronoun-sentence-ratio", currentSelfPronouns.length / currentSentences.length);
     updateText(".self-pronoun-pronoun-ratio", Math.trunc(selfPronounRatio(submittedText) * 100) + '%');
     updateText(".self-pronoun-word-ratio", Math.trunc( (currentSelfPronouns.length / currentWords.length) * 100) + '%' );
-    updateText(".words", currentWords.length);
-    updateText(".pronouns", currentPronouns.length);
-    updateText(".self-pronouns", currentSelfPronouns.length);
   }
 }
 
@@ -147,6 +148,20 @@ function updateText(elementName, text) {
   console.log(elementList); // Debugging
   for (var item of elementList) {
     item.textContent = text;
+  }
+}
+
+function rateVanity(pronounSentenceRatio) {
+  if (pronounSentenceRatio < 0.25) {
+    return ["Selfless!", "You're like a ghost. Ooooo!"];
+  } else if (pronounSentenceRatio >= 0.25 && pronounSentenceRatio < 1) {
+    return ["Typical vain!", "You check yourself in the store window reflection."];
+  } else if (pronounSentenceRatio >= 1 && pronounSentenceRatio < 1.75) {
+    return ["Selfish!", "You don't actually want to share those Doritos."];
+  } else if (pronounSentenceRatio >= 1.75 && pronounSentenceRatio < 2.5) {
+    return ["Narcissist!", "You need Instagram likes more than oxygen."];
+  } else if (pronounSentenceRatio > 2.5) {
+    return ["Mega-narcissist!", "You're so amazing and high class! Just like the president of the U.S.!"];
   }
 }
 

@@ -67,7 +67,25 @@ button {
 }
 
 #results, #fun-stats {
-  display: block;
+
+}
+
+.results {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  transition: visibility 0s, opacity 0.5s ease, height 1s ease;
+}
+
+.revealed {
+  visibility: visible;
+  height: auto;
+  opacity: 1;
+}
+
+#results {
+  background-color: rebeccapurple;
+  color: white;
 }
 
 ul {
@@ -84,7 +102,10 @@ ul {
 .main-stat {
   display: inline-block;
   font-size: 24px;
-  font-weight: 700;
+}
+
+.main-stat, .stat {
+  font-weight: bold;
 }
 
 ol {
