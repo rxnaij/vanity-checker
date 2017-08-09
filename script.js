@@ -8,17 +8,22 @@ const RESULTS_STATS = document.querySelectorAll('.main-stat');
 const RATING = document.querySelector('.rating');
 const FUN_STATS = document.querySelector('#fun-stats');
 
-/********** Word checker functions **********/
+/********** Word manipulation/checking functions **********/
 
 /* Returns a string with all non-alphanumeric characters deleted.
+
 inputString: any string of text.
+
 */
 function removeNonWordChars(inputString) {
   return inputString.replace(/\b\W+/g, ' ');
 }
 
-/* Returns true if inputString is a pronoun referring to a person.
+/*
+Returns true if inputString is a pronoun referring to a person.
+
 inputString: string of one word that is or is not a pronoun.
+
 Precondition: inputString is a single word.
 */
 function isPronoun(inputString) {
@@ -28,10 +33,14 @@ function isPronoun(inputString) {
   return false;
 }
 
-/* Returns true if inputString is a pronoun referring to the self.
+/*
+Returns true if inputString is a pronoun referring to the self.
+
 inputString: string of one word that is or is not a pronoun.
+
 Precondition: inputString is a single word.
 */
+
 function isSelfPronoun(inputString) {
   if ( typeof(inputString) === 'string' && inputString.match(/\b(i|me|mine|my|myself)\b/igm) ) {
     return true;
@@ -39,12 +48,14 @@ function isSelfPronoun(inputString) {
   return false;
 }
 
-/* Returns array of all pronouns in a given string of text.
+/*
+Returns array of all pronouns in a given string of text.
+
 inputString: any string of text.
 */
+
 function allPronouns(inputString) {
-  let inputText = inputString;
-  inputText = removeNonWordChars(inputText);
+  let inputText = removeNonWordChars(inputString);
   let words = inputText.split(' ');
   let pronouns = [];
   let i = 0;
@@ -57,12 +68,14 @@ function allPronouns(inputString) {
   return pronouns;
 }
 
-/* Returns array of all self-pronouns in a given string of text.
+/*
+Returns array of all self-pronouns in a given string of text.
+
 inputString: any string of text.
 */
+
 function selfPronouns(inputString) {
-  let inputText = inputString;
-  inputText = removeNonWordChars(inputText);
+  let inputText = removeNonWordChars(inputString);
   let words = inputText.split(' ');
   let pronouns = [];
   let i = 0; while (i < words.length) {
@@ -74,30 +87,40 @@ function selfPronouns(inputString) {
   return pronouns;
 }
 
-/* Returns the quotient of all self-pronouns divided by all pronouns in a given
+/*
+Returns the quotient of all self-pronouns divided by all pronouns in a given
 string of text.
+
 inputString: any string of text.
 */
+
 function selfPronounRatio(inputString) {
   all = allPronouns(inputString);
   self = selfPronouns(inputString);
   return self.length / all.length;
 }
 
-/* Returns an array of all words in a given string of text.
+/*
+Returns an array of all words in a given string of text.
+
 inputString: any string of text.
 */
+
 function allWords(inputString) {
-  let inputText = inputString;
-  inputText = removeNonWordChars(inputText);
+  let inputText = removeNonWordChars(inputString);
   inputText = inputText.trim();
   let words = inputText.split(' ');
   return words;
 }
 
+/*
+Returns an array of all words in a given string of text.
+
+inputString: any string of text.
+*/
+
 function allSentences(inputString) {
-  let inputText;
-  inputText = inputString.replace(/(\.|\?|!)+(\s*)/g, '\|');
+  let inputText = inputString.replace(/(\.|\?|!)+(\s*)/g, '\|');
   inputText = inputText.trim();
   let sentences = inputText.split('|');
   if (sentences[sentences.length-1] === '') { // Checks for empty string at end of final sentence
@@ -108,19 +131,22 @@ function allSentences(inputString) {
 
 /**********************************************/
 
-/* Updates webpage with statistical information once text is submitted by user.
+/*
+Updates webpage with statistical information once text is submitted by user.
+
 submittedText: string of text to be evaluated
 */
-function updatePage(submittedText) {
-  var currentSelfPronouns = selfPronouns(submittedText);
-  var currentPronouns = allPronouns(submittedText);
-  var currentWords = allWords(submittedText);
-  var currentSentences = allSentences(submittedText);
 
-  var currentVanity = Math.trunc((currentSelfPronouns.length / currentSentences.length) * 100);
+function updatePage(submittedText) {
+  let currentSelfPronouns = selfPronouns(submittedText);
+  let currentPronouns = allPronouns(submittedText);
+  let currentWords = allWords(submittedText);
+  let currentSentences = allSentences(submittedText);
+  let currentVanity = Math.trunc((currentSelfPronouns.length / currentSentences.length) * 100);
 
   if ( isNaN(currentVanity) ) { // Calculation error check
     console.log('Error!');
+    currentVanity = 0;
   } else {
     RESULTS.classList.add('revealed');
     FUN_STATS.classList.add('revealed');
@@ -139,10 +165,14 @@ function updatePage(submittedText) {
   }
 }
 
-/* Updates text of specified DOM element lists. For use with updatePage() only.
+/*
+Updates text of all DOM elements in a list. For use with updatePage() only.
+
 elementName: name of element
 text: string containing text content
+
 */
+
 function updateText(elementName, text) {
   var elementList = document.querySelectorAll(elementName);
   console.log(elementList); // Debugging
@@ -150,6 +180,14 @@ function updateText(elementName, text) {
     item.textContent = text;
   }
 }
+
+/*
+Returns an array of two strings - the title and the description - that rate an author's vanity based on the self pronoun-to-sentence ratio in a string of text.
+
+pronounSentenceRatio: a number representing the ratio of self pronouns to sentences in a string
+
+Precondition: pronounSentenceRatio is a number greater than 0
+*/
 
 function rateVanity(pronounSentenceRatio) {
   if (pronounSentenceRatio < 0.25) {
