@@ -33,6 +33,10 @@ h1 {
   text-align: center;
 }
 
+p {
+  line-height: 1.5rem;
+}
+
 section, footer {
   padding: 25px;
   margin: 0 auto;
@@ -45,13 +49,14 @@ section, footer {
   }
 }
 
-.input-options  {
+.wrapper  {
   display: grid;
   transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  grid-gap: 3rem;
 }
 
 @media (min-width: 769px) {
-  .input-options {
+  .wrapper {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -83,7 +88,7 @@ button {
   opacity: 1;
 }
 
-#results {
+#results, #fun-stats {
   background-color: rebeccapurple;
   color: white;
 }
@@ -93,7 +98,7 @@ ul {
   line-height: 2rem;
 }
 
-.main-stats {
+.main-stats, {
   text-align: center;
   font-family: "Source Sans Pro", 'Roboto', serif;
   font-size: 18px;
@@ -118,4 +123,11 @@ ol {
 }
 #heading {
   color: #FFF8F7;
+}
+
+#process h1 {
+  margin: 0;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  /*border-top: black solid 1px;*/
 }

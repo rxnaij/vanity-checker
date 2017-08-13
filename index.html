@@ -15,13 +15,13 @@
   <main>
     <section id="heading">
       <h1 class="title">Vanity Checker</h1>
-      <p>Find out how vain your writing is!</p>
+      <p>Let your writing speak for yourself.</p>
     </section>
 
     <section id="text-entry">
       <h1>Let's start!</h1>
-      <h2 style="text-align: center;">Submit the text you'd like to evaluate for narcissism (e.g. your blog post, article, paragraph, etc.)</h2>
-      <div class="input-options">
+      <h2 style="text-align: center;">Submit a piece that you wrote. It can be a blog post, article, letter, paragraph, anything; but you must have written it.</h2>
+      <div class="wrapper">
         <div>
           <h3>Method 1: Upload a .txt file!</h3>
           <input type="file" accept=".txt" id="file-input"></input>
@@ -38,16 +38,16 @@
       <h1 id="vanity-heading">Behold: you are :vanity-percent:% vain!</h1>
       <ul class = "main-stats">
         <li><span class="main-stat self-pronoun-sentence-ratio">:self-percent:</span> self-pronouns (I, me, myself, mine, me) per sentence!</li>
-        <li><span class="main-stat self-pronoun-pronoun-ratio">:pronoun-percent:</span> of all pronouns are self pronouns!</li>
-        <li><span class="main-stat self-pronoun-word-ratio">:word-percent:</span> of all words are self pronouns!</li>
-        <li>Rating: <br><span class="main-stat rating"></span></li>
+        <li><span class="main-stat self-pronoun-pronoun-ratio">:pronoun-percent:</span> of all pronouns are self-pronouns!</li>
+        <li><span class="main-stat self-pronoun-word-ratio">:word-percent:</span> of all words are self-pronouns!</li>
+        <li>Rating: <span class="main-stat rating"></span></li>
       </ul>
     </section>
 
     <section id="fun-stats" class="results hidden">
       <h2>Data breakdown</h2>
       <!-- BREAKDOWN OF DATA: -->
-        <!-- Total number of self pronouns -->
+        <!-- Total number of self-pronouns -->
         <!-- Breakdown of appearance of each pronoun: I, my, me, myself, mine -->
         <!-- Most common words preceding/following each pronoun -->
         <!-- Number of words in document -->
@@ -55,29 +55,44 @@
         <li>Number of words: <span class="stat words"></span></li>
         <li>Number of sentences: <span class="stat sentences"></span></li>
         <li>Number of pronouns: <span class="stat pronouns"></span></li>
-        <li>Number of self pronouns: <span class="stat self-pronouns"></span></li>
-        <li>Ratio of self pronouns to sentences: <span class="stat self-pronoun-sentence-ratio"></span></li>
-        <li>Ratio of self pronouns to all pronouns: <span class="stat self-pronoun-pronoun-ratio"></span></li>
+        <li>Number of self-pronouns (I, me, my, myself, mine): <span class="stat self-pronouns"></span></li>
+        <li>Self-pronouns per sentence: <span class="stat self-pronoun-sentence-ratio"></span></li>
+        <li>Self-pronouns per pronoun: <span class="stat self-pronoun-pronoun-ratio"></span></li>
       </ul>
     </section>
 
     <section id="process">
       <h1>About this silly project</h1>
-      <h2>Tools used:</h2>
-      <ol>
-        <li>JavaScript: just the vanilla flavor</li>
-        <li>HTML and CSS :)</li>
-        <li>Uhh...GitHub?</li>
-        <li>My...computer?</li>
-        <li><1 cup of coffee</li>
-      </ol>
+      <div class="wrapper">
+        <div>
+          <h2>What is this thing, anyway?</h2>
+          <p>We all know deep down that we're all absolutely engrossed with ourselves, especially in a world of selfies and likes. Admitting it, however, is a different story. The <strong>Vanity Checker</strong> uses cutting-edge technology to deliver an assessment of your narcissism quotient straight to your browser. Just pop in a written piece of yours and the Vanity Checker will psychoanalyze it better than a college freshman's first paper on Freud.</p>
+        </div>
+        <div>
+          <h2>How does it work?</h2>
+          <p>The Vanity Checker calculates the ratio of self-pronouns (such as "I", "me", and "my") to other sentences in the text. This is a simple and completely unscientific way of estimating how often the author feels the need to reference their own self to communicate a point.</p>
+        </div>
+        <div>
+          <h2>What the heck is the point?</h2>
+          <p>Glad you asked. The author of this application has found that when writing about himself, he drizzles sentences with self-pronouns in a predictable and inelegant fashion, like an absentminded cook adding too much salt. Feeling self-conscious about his self-consciousness, he devised ways to reduce the surplus of self-pronouns in his writing, for instance, writing this completely necessary application.</p>
+        </div>
+        <div>
+          <h2>Tools used:</h2>
+          <ol>
+            <li>JavaScript: just the vanilla flavor</li>
+            <li>HTML and CSS</li>
+            <li>Uh... my...computer?</li>
+            <li><1 cup of coffee</li>
+          </ol>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>(C) Richard Lu 2017</p>
+    <p>(C) <a href="https://rxnaij.github.io">Richard Lu</a> 2017</p>
     <a href="https://github.com/rxnaij/vanity-checker" title="GitHub repository">GitHub repo</a>
-    <p>Disclaimer: this website is just for fun. Don't take too seriously, unless you are actually narcissistic, in which some serious self-reflection is due.</p>
+    <p>Disclaimer: this website is just for fun. Don't take it too seriously.</p>
     <p>All stats are slightly rounded for ease of viewing.</p>
   </footer>
 </body>

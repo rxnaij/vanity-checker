@@ -103,7 +103,11 @@ function selfPronouns(inputString) {
 function selfPronounRatio(inputString) {
   let all = allPronouns(inputString);
   let self = selfPronouns(inputString);
-  return self.length / all.length;
+  if (all.length === 0) {
+    return 0;
+  } else {
+    return self.length / all.length;
+  }
 }
 
 /********************* HTML page update functions *************************/
@@ -115,7 +119,7 @@ function selfPronounRatio(inputString) {
 */
 function updateText(elementName, text) {
   let elementList = document.querySelectorAll(elementName);
-  console.log(elementList); // Debugging
+  //console.log(elementList); // Debugging
   for (let item of elementList) {
     item.textContent = text;
   }
@@ -129,17 +133,17 @@ function updateText(elementName, text) {
  * Precondition: pronounSentenceRatio is a number greater than 0
  */
 function rateVanity(pronounSentenceRatio) {
-  if (pronounSentenceRatio < 0.25) {
+  if (pronounSentenceRatio < 0.5) {
     return ["Selfless!", "You're like a ghost. Ooooo!"];
-  } else if (pronounSentenceRatio >= 0.25 && pronounSentenceRatio < 1) {
+  } else if (pronounSentenceRatio >= 0.5 && pronounSentenceRatio < 1.5) {
     return ["Typical vain!", "You check yourself in the store window reflection."];
-  } else if (pronounSentenceRatio >= 1 && pronounSentenceRatio < 1.75) {
+  } else if (pronounSentenceRatio >= 1.5 && pronounSentenceRatio < 2) {
     return ["Selfish!", "You don't actually want to share those Doritos."];
-  } else if (pronounSentenceRatio >= 1.75 && pronounSentenceRatio < 2.5) {
+  } else if (pronounSentenceRatio >= 2 && pronounSentenceRatio < 3) {
     return ["Narcissist!", "You need Instagram likes more than oxygen."];
-  } else if (pronounSentenceRatio > 2.5) {
+  } else if (pronounSentenceRatio > 3) {
     return ["Mega-narcissist!", "You're so amazing and high class! Just like" +
-    "the president of the U.S.!"];
+    " the president of the U.S.!"];
   }
 }
 
@@ -157,13 +161,13 @@ function updatePage(submittedText) {
   let currentVanity = Math.trunc((currentSelfPronouns.length / currentSentences.length) * 100);
 
   if ( isNaN(currentVanity) ) { // Calculation error check
-    console.error('Error!');
     currentVanity = 0;
+    console.error('Error!');
   } else {
     RESULTS.classList.add('revealed');
     FUN_STATS.classList.add('revealed');
 
-    RESULTS_HEADING.textContent = "Behold, you are " + currentVanity + "% vain!";
+    RESULTS_HEADING.textContent = "Behold, your writing indicates you are " + currentVanity + "% vain!";
     let currentVanityRating = rateVanity(currentSelfPronouns.length / currentSentences.length);
     RATING.innerHTML = "<strong>" + currentVanityRating[0] + "</strong> " + currentVanityRating[1];
 
@@ -171,7 +175,7 @@ function updatePage(submittedText) {
     updateText(".sentences", currentSentences.length);
     updateText(".pronouns", currentPronouns.length);
     updateText(".self-pronouns", currentSelfPronouns.length);
-    updateText(".self-pronoun-sentence-ratio", currentSelfPronouns.length / currentSentences.length);
+    updateText(".self-pronoun-sentence-ratio", Math.trunc(currentSelfPronouns.length / currentSentences.length));
     updateText(".self-pronoun-pronoun-ratio", Math.trunc(selfPronounRatio(submittedText) * 100) + '%');
     updateText(".self-pronoun-word-ratio", Math.trunc( (currentSelfPronouns.length / currentWords.length) * 100) + '%' );
   }
