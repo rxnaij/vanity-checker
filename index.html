@@ -34,32 +34,50 @@
       </div>
     </section>
 
-    <section id="results" class="results hidden">
-      <h1 id="vanity-heading">Behold: you are :vanity-percent:% vain!</h1>
-      <ul class = "main-stats">
-        <li><span class="main-stat self-pronoun-sentence-ratio">:self-percent:</span> self-pronouns (I, me, myself, mine, me) per sentence!</li>
-        <li><span class="main-stat self-pronoun-pronoun-ratio">:pronoun-percent:</span> of all pronouns are self-pronouns!</li>
-        <li><span class="main-stat self-pronoun-word-ratio">:word-percent:</span> of all words are self-pronouns!</li>
-        <li>Rating: <span class="main-stat rating"></span></li>
-      </ul>
-    </section>
+    <div class="results-container">
 
-    <section id="fun-stats" class="results hidden">
-      <h2>Data breakdown</h2>
-      <!-- BREAKDOWN OF DATA: -->
-        <!-- Total number of self-pronouns -->
-        <!-- Breakdown of appearance of each pronoun: I, my, me, myself, mine -->
-        <!-- Most common words preceding/following each pronoun -->
-        <!-- Number of words in document -->
-      <ul>
-        <li>Number of words: <span class="stat words"></span></li>
-        <li>Number of sentences: <span class="stat sentences"></span></li>
-        <li>Number of pronouns: <span class="stat pronouns"></span></li>
-        <li>Number of self-pronouns (I, me, my, myself, mine): <span class="stat self-pronouns"></span></li>
-        <li>Self-pronouns per sentence: <span class="stat self-pronoun-sentence-ratio"></span></li>
-        <li>Self-pronouns per pronoun: <span class="stat self-pronoun-pronoun-ratio"></span></li>
-      </ul>
-    </section>
+      <section id="results" class="results">
+        <h1 id="vanity-heading">Behold: you are :vanity-percent:% vain!</h1>
+        <ul class="main-stats">
+          <div class="wrapper">
+            <div>
+              <li><span class="main-stat self-pronoun-sentence-ratio">:self-percent:</span> self-pronouns (I, me, myself, mine, me) occur per sentence!</li>
+              <li><span class="main-stat self-pronoun-pronoun-ratio">:pronoun-percent:</span> of all pronouns in your writing are self-pronouns!</li>
+              <li><span class="main-stat self-pronoun-word-ratio">:word-percent:</span> of all words in your writing are self-pronouns!</li>
+            </div>
+            <div>
+              <li>Rating:<br><span class="main-stat rating"></span></li>
+            </div>
+          </div>
+
+        </ul>
+      </section>
+
+      <section id="fun-stats" class="results">
+        <h2>Data breakdown</h2>
+        <!-- BREAKDOWN OF DATA: -->
+          <!-- Total number of self-pronouns -->
+          <!-- Breakdown of appearance of each pronoun: I, my, me, myself, mine -->
+          <!-- Most common words preceding/following each pronoun -->
+          <!-- Number of words in document -->
+        <ul>
+          <div class="wrapper">
+            <div>
+              <li>Word count: <span class="stat words"></span></li>
+              <li>Sentence count: <span class="stat sentences"></span></li>
+              <li>Pronoun count: <span class="stat pronouns"></span></li>
+              <li>Self-pronoun count (I, me, my, myself, mine): <span class="stat self-pronouns"></span></li>
+            </div>
+            <div>
+              <li>Percentage of self-pronouns per word: <span class="stat self-pronoun-word-ratio"></span></li>
+              <li>Self-pronouns per sentence: <span class="stat self-pronoun-sentence-ratio"></span></li>
+              <li>Percentage of self-pronouns per pronoun: <span class="stat self-pronoun-pronoun-ratio"></span></li>
+            </div>
+          </div>
+        </ul>
+      </section>
+
+    </div>
 
     <section id="process">
       <h1>About this silly project</h1>

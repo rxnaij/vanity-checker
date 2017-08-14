@@ -1,4 +1,4 @@
-/* Box model fix & reset */
+/****** Box model fix & reset ******/
 
 html {
   box-sizing: border-box;
@@ -13,8 +13,9 @@ html, body {
   padding: 0px;
 }
 
-/* Page styles */
+/****** Page styles ******/
 
+/* Global styles */
 body {
   background-color: #F5E9E2;
   color: #0B0014;
@@ -49,6 +50,25 @@ section, footer {
   }
 }
 
+ul {
+  list-style: none;
+  line-height: 2rem;
+}
+
+ol {
+  line-height: 1.5rem;
+}
+
+#heading, footer {
+  background-color: #C1292E;
+  color: #D6CBC5;
+}
+#heading {
+  color: #FFF8F7;
+  box-shadow: 0 2px 5px rgba(0,0,0,.26);
+}
+
+/* CSS Grid wrapper */
 .wrapper  {
   display: grid;
   transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
@@ -61,6 +81,7 @@ section, footer {
   }
 }
 
+/* Input area */
 textarea {
   width: 100%;
 }
@@ -71,8 +92,18 @@ button {
   border: none;
 }
 
-#results, #fun-stats {
+/* Stats display */
 
+/* Reveal class for results/fun-stats */
+#results, #fun-stats {
+  background-color: rebeccapurple;
+  color: white;
+}
+
+.results-container {
+  margin: 0 auto;
+  width: 99%;
+  border-radius: 5px;
 }
 
 .results {
@@ -86,16 +117,14 @@ button {
   visibility: visible;
   height: auto;
   opacity: 1;
+  padding: 25px; /* re-added to elements */
 }
 
-#results, #fun-stats {
-  background-color: rebeccapurple;
-  color: white;
-}
-
-ul {
-  list-style: none;
-  line-height: 2rem;
+@media (min-width: 769px) {
+  .revealed { /* padding re-added to elements when revealed */
+    padding-left: 100px;
+    padding-right: 100px;
+  }
 }
 
 .main-stats, {
@@ -113,16 +142,8 @@ ul {
   font-weight: bold;
 }
 
-ol {
-  line-height: 1.5rem;
-}
-
-#heading, footer {
-  background-color: #C1292E;
-  color: #D6CBC5;
-}
-#heading {
-  color: #FFF8F7;
+#fun-stats {
+  color: #DFDFDF;
 }
 
 #process h1 {
