@@ -113,18 +113,7 @@ button {
   height: 0;
 }
 
-.revealed:last-child {
-  box-shadow: 0 2px 5px rgba(0,0,0,.26);
-}
-
-@media (min-width: 769px) {
-  .revealed { /* padding re-added to elements when revealed */
-    padding-left: 100px;
-    padding-right: 100px;
-  }
-}
-
-.revealed .main-stats {
+.main-stats {
   padding-top: 20px;
   padding-left: 0px;
   border-top: #DFD4CE dotted 1px;
