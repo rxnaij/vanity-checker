@@ -63,6 +63,7 @@ ol {
   background-color: #C1292E;
   color: #D6CBC5;
 }
+
 #heading {
   color: #FFF8F7;
   box-shadow: 0 2px 5px rgba(0,0,0,.26);
@@ -102,8 +103,8 @@ button {
 
 .results-container {
   margin: 0 auto;
-  width: 99%;
-  border-radius: 5px;
+  border: 8px #DFD4CE solid;
+  border-radius: 8px;
 }
 
 .results {
@@ -120,6 +121,10 @@ button {
   padding: 25px; /* re-added to elements */
 }
 
+.revealed:last-child {
+  box-shadow: 0 2px 5px rgba(0,0,0,.26);
+}
+
 @media (min-width: 769px) {
   .revealed { /* padding re-added to elements when revealed */
     padding-left: 100px;
@@ -127,10 +132,13 @@ button {
   }
 }
 
-.main-stats, {
+.main-stats {
+  padding-top: 20px;
+  padding-left: 0px;
+  border-top: #DFD4CE dotted 1px;
   text-align: center;
   font-family: "Source Sans Pro", 'Roboto', serif;
-  font-size: 18px;
+  font-size: 1.25rem;
 }
 
 .main-stat {

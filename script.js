@@ -206,7 +206,7 @@ function updatePage(submittedText) {
 
     // #results section heading & rating
     RESULTS_HEADING.textContent =
-      "Behold, your writing exposes you as " +
+      "Behold: your writing suggests that you are " +
       truncate(currentRatios.toSentences * 100) + "% vain!";
     let rating = rateVanity(currentRatios.toSentences);
     RATING.innerHTML = "<strong>" + rating[0] + "</strong> " +
