@@ -96,29 +96,21 @@ button {
 /* Stats display */
 
 /* Reveal class for results/fun-stats */
-#results, #fun-stats {
+#results, #fun-stats, .main-stats {
   background-color: rebeccapurple;
   color: white;
 }
 
 .results-container {
-  margin: 0 auto;
   border: 8px #DFD4CE solid;
   border-radius: 8px;
-}
-
-.results {
-  visibility: hidden;
-  opacity: 0;
-  height: 0;
   transition: visibility 0s, opacity 0.5s ease, height 1s ease;
 }
 
-.revealed {
-  visibility: visible;
-  height: auto;
-  opacity: 1;
-  padding: 25px; /* re-added to elements */
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
 }
 
 .revealed:last-child {
@@ -132,7 +124,7 @@ button {
   }
 }
 
-.main-stats {
+.revealed .main-stats {
   padding-top: 20px;
   padding-left: 0px;
   border-top: #DFD4CE dotted 1px;

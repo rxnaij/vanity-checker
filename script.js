@@ -2,6 +2,7 @@
 const TEXT_SUBMIT = document.querySelector('#text-button');
 const TEXT_AREA = document.querySelector('#text-input');
 const FILE_SUBMIT = document.querySelector('#file-input');
+const RESULTS_CONTAINER = document.querySelector(".results-container")
 const RESULTS = document.querySelector('#results');
 const RESULTS_HEADING = document.querySelector('#vanity-heading');
 const RATING = document.querySelector('.rating');
@@ -201,8 +202,7 @@ function updatePage(submittedText) {
     alert("Hold up! Send in some real text, not a blank page.");
   } else {
     // Reveal elements on page
-    RESULTS.classList.add('revealed');
-    FUN_STATS.classList.add('revealed');
+    RESULTS_CONTAINER.classList.remove("hidden");
 
     // #results section heading & rating
     RESULTS_HEADING.textContent =
